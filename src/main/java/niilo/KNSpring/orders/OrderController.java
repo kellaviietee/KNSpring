@@ -35,7 +35,7 @@ public class OrderController {
         return orderService.getOrdersSortedByDate();
     }
 
-    @GetMapping(path = "/orders/product")
+    @PostMapping(path = "/orders/product")
     public Order getOrderByProduct(@RequestBody Product product) {
         return orderService.getOrderByProduct(product);
     }
