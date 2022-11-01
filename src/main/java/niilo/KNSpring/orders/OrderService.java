@@ -1,12 +1,14 @@
 package niilo.KNSpring.orders;
 
 import lombok.AllArgsConstructor;
+import niilo.KNSpring.customer.Customer;
 import niilo.KNSpring.orderLine.OrderLine;
 import niilo.KNSpring.orderLine.OrderLineService;
 import niilo.KNSpring.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,17 +30,28 @@ public class OrderService {
         return orderRepository.findByOrderByOrderDateAsc();
     }
 
-    public Order getOrderByProduct(Product product) {
+    public List<Order> getOrderByProduct(Product product) {
         List<Order> orders = orderRepository.findAll();
-        Order rightOrder = null;
+        List<Order> ordersWithProduct = new ArrayList<>();
         for (Order order : orders) {
             for (OrderLine orderLine : order.getOrderLines()) {
                 if (orderLine.getProduct().equals(product)) {
-                    rightOrder = order;
-                    break;
+                    ordersWithProduct.add(order);
                 }
             }
         }
-        return rightOrder;
+        return ordersWithProduct;
+    }
+
+    public List<Order> getOrdersByCustomer(Customer customer) {
+        List<Order> orders = orderRepository.findAll();
+        List<Order> ordersByCustomer = new ArrayList<>();
+        for (Order order : orders) {
+            if (customer.equals(order.getCustomer())) {
+                ordersByCustomer.add(order);
+            }
+        }
+        System.out.println(ordersByCustomer);
+        return ordersByCustomer;
     }
 }

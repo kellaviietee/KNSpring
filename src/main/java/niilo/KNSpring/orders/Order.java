@@ -24,7 +24,7 @@ public class Order {
     private Integer id;
     @Column(name = "order_date")
     @Temporal(TemporalType.TIMESTAMP)
-    Date orderDate;
+    private Date orderDate;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id", referencedColumnName = "registration_code")
     private Customer customer;

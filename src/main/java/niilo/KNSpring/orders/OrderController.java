@@ -1,5 +1,6 @@
 package niilo.KNSpring.orders;
 
+import niilo.KNSpring.customer.Customer;
 import niilo.KNSpring.customer.CustomerService;
 import niilo.KNSpring.orderLine.OrderLine;
 import niilo.KNSpring.product.Product;
@@ -36,8 +37,12 @@ public class OrderController {
     }
 
     @PostMapping(path = "/orders/product")
-    public Order getOrderByProduct(@RequestBody Product product) {
+    public List<Order> getOrderByProduct(@RequestBody Product product) {
         return orderService.getOrderByProduct(product);
+    }
+    @PostMapping(path = "/orders/customer")
+    public List<Order> getOrdersByCustomer(@RequestBody Customer customer) {
+        return orderService.getOrdersByCustomer(customer);
     }
 
 
