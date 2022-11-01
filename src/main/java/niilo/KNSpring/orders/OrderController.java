@@ -2,6 +2,7 @@ package niilo.KNSpring.orders;
 
 import niilo.KNSpring.customer.CustomerService;
 import niilo.KNSpring.orderLine.OrderLine;
+import niilo.KNSpring.product.Product;
 import niilo.KNSpring.product.ProductService;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,11 @@ public class OrderController {
     @GetMapping(path = "/orders/sorted")
     public List<Order> getOrdersSortedByDate() {
         return orderService.getOrdersSortedByDate();
+    }
+
+    @GetMapping(path = "/orders/product")
+    public Order getOrderByProduct(@RequestBody Product product) {
+        return orderService.getOrderByProduct(product);
     }
 
 

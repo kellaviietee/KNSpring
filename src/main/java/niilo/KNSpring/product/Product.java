@@ -21,3 +21,4 @@ public class Product {
     @Column(name = "sku_code")
     private String skuCode;
 }
+
